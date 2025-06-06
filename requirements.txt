@@ -12,3 +12,4 @@ imageio
 umap-learn
 scikit-learn
 matplotlib
+opencv-python
