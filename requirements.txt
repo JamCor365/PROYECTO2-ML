@@ -1,0 +1,14 @@
+streamlit
+pandas
+numpy
+opencv-contrib-python
+mahotas
+scikit-image
+py7zr
+Pillow
+seaborn
+plotly
+imageio
+umap-learn
+scikit-learn
+matplotlib
