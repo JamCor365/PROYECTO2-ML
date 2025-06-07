@@ -9,6 +9,7 @@ from collections import deque
 import seaborn as sns
 import warnings
 import os
+import urllib.request
 import tempfile
 import requests
 import glob
@@ -20,6 +21,13 @@ import sys
 # Patch for legacy pickled objects referencing deprecated numpy paths
 sys.modules.setdefault('numpy._core', np.core)
 sys.modules.setdefault('numpy._core.numeric', np.core.numeric)
+
+path = "data/features_full.parquet"
+url = "https://github.com/JamCor365/PROYECTO2-ML/releases/download/v1.0-dataset/features_full.parquet"
+
+if not os.path.exists(path):
+    os.makedirs("data", exist_ok=True)
+    urllib.request.urlretrieve(url, path)
 
 try:
     st.write("✅ La app arrancó...")
