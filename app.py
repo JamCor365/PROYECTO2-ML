@@ -44,10 +44,16 @@ try:
     #    df_total = pd.concat(dataframes, ignore_index=True)
     #    return df_total
 
-    @st.cache_data(show_spinner="🔄 Leyendo dataset…")
+    #@st.cache_data(show_spinner="🔄 Leyendo dataset…")
+    #def load_data():
+    #    dataset = ds.dataset("data/features_full.parquet")
+    #    return dataset.to_table().to_pandas()
+
+    @st.cache_resource(show_spinner="🔄 Leyendo dataset…")
     def load_data():
         dataset = ds.dataset("data/features_full.parquet")
-        return dataset.to_table().to_pandas()
+        table = dataset.to_table().slice(0, 5000)  # Solo 5 mil filas
+        return table.to_pandas()
 
 
     features_df = load_data()
