@@ -52,7 +52,7 @@ try:
     @st.cache_resource(show_spinner="🔄 Leyendo dataset…")
     def load_data():
         dataset = ds.dataset("data/features_full.parquet")
-        table = dataset.to_table().slice(0, 5000)  # Solo 5 mil filas
+        table = dataset.to_table().slice(0, 2000)  # Solo 2 mil filas
         return table.to_pandas()
 
 
