@@ -12,6 +12,7 @@ import os
 import tempfile
 import requests
 import glob
+import pyarrow.dataset as ds
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import silhouette_score, normalized_mutual_info_score
 from utils.funciones import extract_features, kmeans, dbscan
@@ -27,16 +28,22 @@ try:
 
     # Ruta local al archivo .pkl
 
-    @st.cache_data
-    def load_data():
-        # Leer y juntar todos los .pkl divididos
-        chunk_paths = sorted(glob.glob("data/features_part_*.pkl"))
-        dataframes = [pd.read_pickle(path) for path in chunk_paths]
-        df_total = pd.concat(dataframes, ignore_index=True)
-        return df_total
+    #@st.cache_data
+    #def load_data():
+    #    # Leer y juntar todos los .pkl divididos
+    #    chunk_paths = sorted(glob.glob("data/features_part_*.pkl"))
+    #    dataframes = [pd.read_pickle(path) for path in chunk_paths]
+    #    df_total = pd.concat(dataframes, ignore_index=True)
+    #    return df_total
 
-    #features_df = load_data()
-    features_df = pd.DataFrame() # línea temporal para evitar errores posteriores
+    @st.cache_data(show_spinner="🔄 Leyendo dataset…")
+    def load_data():
+        dataset = ds.dataset("data/features_full.parquet")
+        return dataset.to_table().to_pandas()
+
+
+    features_df = load_data()
+    #features_df = pd.DataFrame() # línea temporal para evitar errores posteriores
 
     TMDB_API_KEY = st.secrets["api"]["tmdb_key"]
 

@@ -13,3 +13,5 @@ umap-learn
 scikit-learn
 matplotlib
 opencv-python
+pyarrow
+requests
