@@ -35,7 +35,8 @@ try:
         df_total = pd.concat(dataframes, ignore_index=True)
         return df_total
 
-    features_df = load_data()
+    #features_df = load_data()
+    features_df = pd.DataFrame() # línea temporal para evitar errores posteriores
 
     TMDB_API_KEY = st.secrets["api"]["tmdb_key"]
 
