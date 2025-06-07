@@ -1,2 +1,2 @@
-# [server.fileWatcher]
-# type = "none"
+[server]
+fileWatcherType = "none"
