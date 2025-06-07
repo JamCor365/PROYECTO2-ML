@@ -9,7 +9,9 @@ Pillow
 seaborn
 plotly
 imageio
-umap-learn
+umap-learn==0.5.4
+numba==0.55.2
+llvmlite==0.38.0
 scikit-learn
 matplotlib
 opencv-python
